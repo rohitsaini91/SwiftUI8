@@ -7,10 +7,15 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct ContentView: View {
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack{
+            player().frame(height: 300)
+            Spacer()
+        }
     }
 }
 
@@ -19,3 +24,17 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+struct player:UIViewControllerRepresentable{
+    func makeUIViewController(context: UIViewControllerRepresentableContext<player>) -> AVPlayerViewController {
+        let controller = AVPlayerViewController()
+        let url = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+        let player1 = AVPlayer(url: URL(string: url)!)
+        controller.player = player1
+        return controller
+    }
+    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: UIViewControllerRepresentableContext<player>) {
+        
+    }
+}
+
